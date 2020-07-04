@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import CategoryAdd from './components/CategoryAdd';
+import GiftGrid from './components/GiftGrid';
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+
 
 function App() {
+
+
+  const [categories, setCategory] = useState(['One punch']);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        
+        <h1 className="centrar">Gift APP</h1>
+        <CategoryAdd setCategory= {setCategory}/>
+        {/* <button onClick ={handleAdd}> Agregar</button> */}
+
+        <ol>
+           {
+             categories.map( (category) => (
+              <GiftGrid
+               category= {category}
+               key={category}
+              />
+             ))
+           }
+        </ol>
     </div>
   );
 }
